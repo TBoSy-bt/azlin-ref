@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "azlin"
+
+version = "2.10.0"
+description = "Azure VM fleet management CLI - provision, manage, and monitor development VMs"
+requires-python = ">=3.11"
+authors = [
+    {name = "Ryan Sweet", email = "rysweet@microsoft.com"},
+]
+readme = "README.md"
+license = {text = "MIT"}
+keywords = ["azure", "vm", "cli", "devops", "cloud", "provisioning"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Rust",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.scripts]
+azlin = "azlin.rust_bridge:entry"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/azlin"]

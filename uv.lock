@@ -1,0 +1,8 @@
+version = 1
+revision = 3
+requires-python = ">=3.11"
+
+[[package]]
+name = "azlin"
+version = "2.6.21"
+source = { editable = "." }
