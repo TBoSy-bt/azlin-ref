@@ -1,53 +1,53 @@
-# 🚀 azlin — Управление Azure VM через CLI | Рефакторинг
+# 🚀 azlin — Azure VM Management via CLI | Refactoring
 
 [![Latest Release](https://img.shields.io/github/v/release/rysweet/azlin?label=latest&sort=semver)](https://github.com/rysweet/azlin/releases/latest)
 [![Rust](https://img.shields.io/badge/rust-1.85+-orange.svg)](https://www.rust-lang.org)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**[Полная документация](https://rysweet.github.io/azlin/)** | **[Быстрый старт](#-быстрый-старт)** | **[Changelog](CHANGELOG.md)**
+**[Full Documentation](https://rysweet.github.io/azlin/)** | **[Quick Start](#-quick-start)** | **[Changelog](CHANGELOG.md)**
 
 ---
 
-## 📖 О проекте
+## 📖 About
 
-**azlin** — это CLI инструмент на Rust для автоматизации управления виртуальными машинами Ubuntu в Azure.
+**azlin** is a Rust-based CLI tool for automating Ubuntu virtual machine management in Azure.
 
-> **Одна команда** для создания полностью настроенной development-среды на Azure за 4-7 минут!
+> **One command** to create a fully configured development environment on Azure in 4-7 minutes!
 
-### Что делает azlin?
+### What azlin does
 
 ```
 ┌─────────────────────────────────────────────────────────┐
 │  azlin new --name myproject                             │
 │  ─────────────────────────────────────────────────────  │
-│  ✅ Аутентификация в Azure                              │
-│  ✅ Создание Ubuntu 26.04 LTS VM                        │
-│  ✅ Установка 12 инструментов разработки                │
-│  ✅ Отдельный 100GB Premium SSD для /home               │
-│  ✅ SSH с ключевой аутентификацией                      │
-│  ✅ Persistent tmux сессия                              │
-│  ✅ Клонирование GitHub репозитория (опционально)       │
+│  ✅ Azure authentication                                │
+│  ✅ Ubuntu 26.04 LTS VM creation                        │
+│  ✅ 12 development tools installed                      │
+│  ✅ Dedicated 100GB Premium SSD for /home               │
+│  ✅ SSH with key-based authentication                   │
+│  ✅ Persistent tmux session                             │
+│  ✅ GitHub repository cloning (optional)                │
 └─────────────────────────────────────────────────────────┘
 ```
 
-### 🎯 Основные возможности
+### 🎯 Key Features
 
-| Возможность | Описание |
-|-------------|----------|
-| 🖥️ **VM Lifecycle** | Создание, старт, стоп, удаление VM |
-| 🔐 **Azure Bastion** | Безопасный доступ без публичных IP |
-| 📊 **Health Dashboard** | Мониторинг по 4 золотым сигналам |
-| 💰 **Cost Tracking** | Отслеживание затрат в реальном времени |
-| 🔑 **SSH Management** | Авто-синхронизация ключей, reconnect |
-| 📦 **NFS Storage** | Общие home directory для команды |
-| 🤖 **Auto-Discovery** | Авто-определение resource group |
-| 📱 **Mobile PWA** | Управление с iPhone |
+| Feature | Description |
+|---------|-------------|
+| 🖥️ **VM Lifecycle** | Create, start, stop, delete VMs |
+| 🔐 **Azure Bastion** | Secure access without public IPs |
+| 📊 **Health Dashboard** | Monitoring with 4 golden signals |
+| 💰 **Cost Tracking** | Real-time cost tracking |
+| 🔑 **SSH Management** | Auto key sync, reconnect |
+| 📦 **NFS Storage** | Shared home directories for teams |
+| 🤖 **Auto-Discovery** | Automatic resource group detection |
+| 📱 **Mobile PWA** | iPhone management app |
 
 ---
 
-## ⚡ Быстрый старт
+## ⚡ Quick Start
 
-### Установка
+### Installation
 
 #### Linux (x86_64, aarch64)
 ```bash
@@ -66,52 +66,52 @@ curl -sSL https://github.com/rysweet/azlin/releases/latest/download/azlin-macos-
   sudo mv azlin-macos-$(uname -m) /usr/local/bin/azlin
 ```
 
-#### Проверка
+#### Verify Installation
 ```bash
 azlin --version
 azlin --help
 ```
 
-#### Из исходников
+#### Build from Source
 ```bash
 git clone https://github.com/rysweet/azlin
 cd azlin/rust
 cargo install --path crates/azlin
 ```
 
-### Самообновление
+### Self-Update
 ```bash
-azlin update  # или: azlin self-update
+azlin update  # or: azlin self-update
 ```
 
-### Первые команды
+### First Commands
 ```bash
-# Создать VM с именем
+# Create a VM with a name
 azlin new --name myproject
 
-# Полностью автоматическое создание (без вопросов)
+# Fully automated creation (no prompts)
 azlin new --name myvm --yes
 
-# Создать VM и склонировать репозиторий
+# Create VM and clone a repository
 azlin new --repo https://github.com/owner/repo
 
-# Проверить здоровье всех VM
+# Check health of all VMs
 azlin health
 
-# Подключиться к VM
+# Connect to a VM
 azlin connect myproject
 ```
 
 ---
 
-## 🛠️ Предустановленные инструменты
+## 🛠️ Pre-installed Tools
 
-Каждая VM поставляется с полным набором инструментов разработки:
+Every VM comes with a complete development toolchain:
 
-| Инструмент | Версия | Назначение |
-|------------|--------|------------|
+| Tool | Version | Purpose |
+|------|---------|---------|
 | 🐳 **Docker** | Latest | Container runtime |
-| ☁️ **Azure CLI (az)** | Latest | Управление Azure |
+| ☁️ **Azure CLI (az)** | Latest | Azure management |
 | 🐙 **GitHub CLI (gh)** | Latest | GitHub integration |
 | 🔧 **Git** | Latest | Version control |
 | 🟢 **Node.js** | 24.x LTS | JavaScript runtime |
@@ -124,33 +124,33 @@ azlin connect myproject
 | 🤖 **Claude Code CLI** | Latest | AI coding assistant |
 
 ### AI Assistant
-**Claude Code CLI** предустановлен и готов к использованию:
+**Claude Code CLI** is pre-installed and ready to use:
 ```bash
-# На VM
-claude  # Запуск AI assistant
+# On the VM
+claude  # Launch AI assistant
 ```
 
 ---
 
-## 🔐 Аутентификация
+## 🔐 Authentication
 
-azlin поддерживает несколько методов аутентификации:
+azlin supports multiple authentication methods:
 
-### 1. Azure CLI (по умолчанию)
+### 1. Azure CLI (Default)
 ```bash
 az login
-azlin list  # Аутентификация автоматическая
+azlin list  # Automatic authentication
 ```
 
-### 2. Service Principal (для CI/CD)
+### 2. Service Principal (for CI/CD)
 ```bash
-# Интерактивная настройка
+# Interactive setup
 azlin auth setup
 
-# Тестирование
+# Test authentication
 azlin auth test
 
-# Использование профиля
+# Use a specific profile
 azlin --auth-profile prod list
 ```
 
@@ -164,108 +164,108 @@ azlin list
 ```
 
 ### 4. Managed Identity
-Автоматически на Azure-hosted ресурсах.
+Automatically enabled on Azure-hosted resources.
 
 ---
 
-## 📋 Основные команды
+## 📋 Core Commands
 
-### Жизненный цикл VM
+### VM Lifecycle
 
-| Команда | Описание | Пример |
-|---------|----------|--------|
-| `azlin new` | Создать VM | `azlin new --name myvm` |
-| `azlin list` | Список VM | `azlin list --all` |
-| `azlin start` | Запустить VM | `azlin start myvm` |
-| `azlin stop` | Остановить VM | `azlin stop myvm` |
-| `azlin connect` | SSH подключение | `azlin connect myvm` |
-| `azlin clone` | Клонировать VM | `azlin clone source --num-replicas 3` |
-| `azlin kill` | Удалить VM | `azlin kill myvm` |
-| `azlin destroy` | Удалить с опциями | `azlin destroy myvm --dry-run` |
-| `azlin killall` | Удалить все VM | `azlin killall --force` |
+| Command | Description | Example |
+|---------|-------------|---------|
+| `azlin new` | Create a VM | `azlin new --name myvm` |
+| `azlin list` | List VMs | `azlin list --all` |
+| `azlin start` | Start a VM | `azlin start myvm` |
+| `azlin stop` | Stop a VM | `azlin stop myvm` |
+| `azlin connect` | SSH connection | `azlin connect myvm` |
+| `azlin clone` | Clone a VM | `azlin clone source --num-replicas 3` |
+| `azlin kill` | Delete a VM | `azlin kill myvm` |
+| `azlin destroy` | Delete with options | `azlin destroy myvm --dry-run` |
+| `azlin killall` | Delete all VMs | `azlin killall --force` |
 
-### Мониторинг
+### Monitoring
 
-| Команда | Описание | Пример |
-|---------|----------|--------|
+| Command | Description | Example |
+|---------|-------------|---------|
 | `azlin health` | Health dashboard | `azlin health --tui` |
-| `azlin status` | Детальный статус | `azlin status --vm myvm` |
-| `azlin logs` | Просмотр логов | `azlin logs myvm --follow` |
-| `azlin cost` | Затраты | `azlin cost --by-vm` |
-| `azlin top` | Real-time мониторинг | `azlin top --interval 5` |
-| `azlin w` | Кто залогинен | `azlin w` |
-| `azlin ps` | Процессы | `azlin ps --grouped` |
+| `azlin status` | Detailed status | `azlin status --vm myvm` |
+| `azlin logs` | View logs | `azlin logs myvm --follow` |
+| `azlin cost` | Cost tracking | `azlin cost --by-vm` |
+| `azlin top` | Real-time monitoring | `azlin top --interval 5` |
+| `azlin w` | Who is logged in | `azlin w` |
+| `azlin ps` | Process list | `azlin ps --grouped` |
 
-### Файловые операции
+### File Operations
 
-| Команда | Описание | Пример |
-|---------|----------|--------|
-| `azlin cp` | Копирование файлов | `azlin cp file.txt myvm:/tmp/` |
-| `azlin sync` | Синхронизация home | `azlin sync --vm-name myvm` |
-| `azlin sync-keys` | Синхронизация SSH ключей | `azlin sync-keys myvm` |
+| Command | Description | Example |
+|---------|-------------|---------|
+| `azlin cp` | Copy files | `azlin cp file.txt myvm:/tmp/` |
+| `azlin sync` | Sync home directory | `azlin sync --vm-name myvm` |
+| `azlin sync-keys` | Sync SSH keys | `azlin sync-keys myvm` |
 
-### Продвинутые
+### Advanced
 
-| Команда | Описание | Пример |
-|---------|----------|--------|
-| `azlin bastion` | Управление Bastion | `azlin bastion list` |
+| Command | Description | Example |
+|---------|-------------|---------|
+| `azlin bastion` | Manage Bastion | `azlin bastion list` |
 | `azlin context` | Multi-tenant context | `azlin context use prod` |
-| `azlin template` | Шаблоны VM | `azlin template list` |
-| `azlin snapshot` | Снэпшоты | `azlin snapshot create myvm` |
-| `azlin storage` | NFS хранилище | `azlin storage create shared --size 100` |
-| `azlin env` | Переменные окружения | `azlin env set myvm KEY=value` |
-| `azlin keys` | SSH ключи | `azlin keys rotate myvm` |
-| `azlin batch` | Пакетные операции | `azlin batch run --pattern "worker-*"` |
+| `azlin template` | VM templates | `azlin template list` |
+| `azlin snapshot` | Snapshots | `azlin snapshot create myvm` |
+| `azlin storage` | NFS storage | `azlin storage create shared --size 100` |
+| `azlin env` | Environment variables | `azlin env set myvm KEY=value` |
+| `azlin keys` | SSH keys | `azlin keys rotate myvm` |
+| `azlin batch` | Batch operations | `azlin batch run --pattern "worker-*"` |
 
 ---
 
-## 🎯 Умные функции
+## 🎯 Smart Features
 
-### 🔑 Авто-синхронизация SSH ключей
+### 🔑 Auto-Sync SSH Keys
 
-При ошибке доступа azlin автоматически обновит ключ на VM:
+When access fails, azlin automatically updates the key on the VM:
 
 ```bash
 azlin connect my-vm
 
-# Вывод:
+# Output:
 # SSH auth failed for my-vm, syncing key via az vm user update...
 # Key synced, retrying SSH...
 # Connecting to my-vm...
 # Connected! ✓
 ```
 
-**Что делает:**
-- Переиспользует ваш локальный публичный ключ
-- Отправляет ключ через `az vm user update`
-- Повторяет подключение после обновления
-- Сохраняет существующие ключи на VM
+**What it does:**
+- Reuses your local public key
+- Sends the key via `az vm user update`
+- Retries connection after update
+- Preserves existing keys on the VM
 
-### 🔍 Авто-определение Resource Group
+### 🔍 Auto-Detect Resource Group
 
-azlin автоматически находит resource group с вашей VM:
+azlin automatically finds the resource group containing your VM:
 
 ```bash
 azlin connect my-vm
 
-# Вывод:
+# Output:
 # Resource group not specified, attempting auto-discovery...
 # Discovered VM 'my-vm' in resource group 'rg-prod' ✓
 # Connecting to my-vm...
 ```
 
-**Преимущества:**
-- Кэширование на 15 минут
-- Быстрое подключение (<100ms при cache hit)
-- Работает across всех resource groups
+**Benefits:**
+- 15-minute caching
+- Fast connection (<100ms on cache hit)
+- Works across all resource groups
 
-### 🎛️ Compound именование VM:Session
+### 🎛️ Compound VM:Session Naming
 
 ```bash
-# Задать session name
+# Set a session name
 azlin session azlin-vm-12345 myproject
 
-# Использовать session name
+# Use the session name
 azlin connect myproject
 azlin stop myproject
 azlin logs myproject
@@ -275,21 +275,21 @@ azlin logs myproject
 
 ## 📊 Health Dashboard
 
-Мониторинг по **Четырем Золотым Сигналам**:
+Monitoring using **Four Golden Signals**:
 
 ```bash
-azlin health                 # Все VM в default resource group
-azlin health --vm my-vm      # Проверка одной VM
-azlin health --tui           # Интерактивный TUI dashboard
+azlin health                 # All VMs in default resource group
+azlin health --vm my-vm      # Check a single VM
+azlin health --tui           # Interactive TUI dashboard
 ```
 
-**Отображает:**
-- **Latency** — Agent статус
+**Displays:**
+- **Latency** — Agent status
 - **Traffic** — Power state
-- **Errors** — Количество ошибок в журналах
+- **Errors** — Error count in logs
 - **Saturation** — CPU, Memory, Disk usage
 
-**Пример вывода:**
+**Sample Output:**
 ```
 ┌────────────────────┬──────────┬──────────┬────────┬─────────┬──────────┬────────┐
 │ VM Name            │ State    │ Agent    │ Errors │ CPU %   │ Memory % │ Disk % │
@@ -307,57 +307,57 @@ Thresholds: <70% ✓ | 70-90% ⚠ | >90% ✗
 
 ## 📱 Azlin Mobile PWA
 
-**Управляйте Azure VM с iPhone!**
+**Manage Azure VMs from your iPhone!**
 
-Установите PWA на домашний экран и получите доступ к VM отовсюду:
+Install the PWA on your home screen and access VMs from anywhere:
 
-- ✅ **Управление VM** — Создание, старт, стоп, удаление
-- ✅ **Tmux Integration** — Просмотр сессий и команды
-- ✅ **Private IP Support** — Работа через Azure Bastion
-- ✅ **Cost Tracking** — Мониторинг затрат и бюджетов
-- ✅ **Offline Ready** — Service worker кэширование
+- ✅ **VM Management** — Create, start, stop, delete
+- ✅ **Tmux Integration** — View sessions and run commands
+- ✅ **Private IP Support** — Works via Azure Bastion
+- ✅ **Cost Tracking** — Monitor costs and budgets
+- ✅ **Offline Ready** — Service worker caching
 
-**[Документация PWA](docs/pwa/README.md)** | **[Getting Started](docs/pwa/getting-started.md)**
+**[PWA Documentation](docs/pwa/README.md)** | **[Getting Started](docs/pwa/getting-started.md)**
 
 ---
 
-## 🔄 Рефакторинг проекта (v1.0)
+## 🔄 Project Refactoring (v1.0)
 
-### 📦 Что изменилось
+### 📦 What Changed
 
-Проведен полный рефакторинг кодовой базы с улучшением архитектуры, производительности и безопасности.
+Complete codebase refactoring with improved architecture, performance, and security.
 
-#### Новая структура
+#### New Structure
 
 ```
 azlin-core/
-├── validation.rs    ✨ НОВЫЙ! Централизованная валидация
-├── models.rs        📊 Модели данных + Builder pattern
-├── config.rs        ⚙️ Конфигурация с оптимизацией
-├── error.rs         ❌ Обработка ошибок
-└── sanitizer.rs     🔒 Санитизация данных
+├── validation.rs    ✨ NEW! Centralized validation
+├── models.rs        📊 Data models + Builder pattern
+├── config.rs        ⚙️ Configuration with optimization
+├── error.rs         ❌ Error handling
+└── sanitizer.rs     🔒 Data sanitization
 ```
 
-### 🎁 Новые возможности
+### 🎁 New Features
 
-#### 1. Модуль валидации
+#### 1. Validation Module
 
 ```rust
 use azlin_core::validation::*;
 
-// Валидация имени VM
+// Validate VM name
 validate_vm_name("my-vm-01")?;
 
-// Валидация региона (case-insensitive!)
-let region = validate_azure_region("WestUS2")?; // вернет "westus2"
+// Validate region (case-insensitive!)
+let region = validate_azure_region("WestUS2")?; // returns "westus2"
 
-// Быстрая проверка
+// Quick check
 if is_valid_region("eastus") {
     println!("Region is valid!");
 }
 ```
 
-#### 2. Builder Pattern для CreateVmParams
+#### 2. Builder Pattern for CreateVmParams
 
 ```rust
 use azlin_core::models::CreateVmParams;
@@ -370,7 +370,7 @@ let params = CreateVmParams::builder("my-vm", "my-rg")
     .add_tag("env", "dev")
     .add_tag("team", "backend")
     .public_ip_enabled(true)
-    .build()?; // Валидация внутри!
+    .build()?; // Validation included!
 ```
 
 #### 3. Extension Traits
@@ -387,62 +387,62 @@ if state.is_in_progress() {
 }
 ```
 
-#### 4. Оптимизация производительности
+#### 4. Performance Optimizations
 
-| Компонент | Было | Стало | Улучшение |
-|-----------|------|-------|-----------|
+| Component | Before | After | Improvement |
+|-----------|--------|-------|-------------|
 | **VmImage lookup** | O(n) match | O(1) lookup | ⚡ +30% |
-| **validate_field()** | 6+ if проверок | match jump table | ⚡ +20% |
-| **validate_vm_name()** | несколько проходов | один проход | ⚡ +15% |
+| **validate_field()** | 6+ if checks | match jump table | ⚡ +20% |
+| **validate_vm_name()** | multiple passes | single pass | ⚡ +15% |
 
-### 📊 Метрики рефакторинга
+### 📊 Refactoring Metrics
 
-| Метрика | До | После | Улучшение |
-|---------|-----|-------|-----------|
-| Размер models.rs | ~900 строк | ~700 строк | 📉 -22% |
-| Точки валидации | 3 места | 1 место | 📉 -67% |
-| Тестовое покрытие | ~60% | ~75% | 📈 +25% |
-| Производительность | baseline | оптимизировано | 📈 +20-30% |
+| Metric | Before | After | Improvement |
+|--------|--------|-------|-------------|
+| models.rs size | ~900 lines | ~700 lines | 📉 -22% |
+| Validation points | 3 places | 1 place | 📉 -67% |
+| Test coverage | ~60% | ~75% | 📈 +25% |
+| Performance | baseline | optimized | 📈 +20-30% |
 
-### ✅ Обратная совместимость
+### ✅ Backward Compatibility
 
-Все изменения **обратно совместимы**:
-- Ре-экспорт старых функций ✅
-- Сохранены все публичные API ✅
-- Нет breaking changes ✅
+All changes are **backward compatible**:
+- Re-export of old functions ✅
+- All public APIs preserved ✅
+- No breaking changes ✅
 
 ---
 
-## 🚀 Roadmap улучшений
+## 🚀 Improvement Roadmap
 
-### Краткосрочно (v1.1)
-- 🔥 Кэширование Azure API calls
-- 🔥 Параллельная валидация VM
-- 🔥 Улучшенная обработка ошибок
+### Short-term (v1.1)
+- 🔥 Azure API call caching
+- 🔥 Parallel VM validation
+- 🔥 Enhanced error handling
 
-### Среднесрочно (v2.0)
-- 🎯 Connection pooling для SSH
-- 🎯 Streaming операции
+### Mid-term (v2.0)
+- 🎯 Connection pooling for SSH
+- 🎯 Streaming operations
 - 🎯 Plugin system
 
-### Долгосрочно (v3.0)
+### Long-term (v3.0)
 - 🌟 AI integration (NLP queries)
 - 🌟 Multi-cloud support (AWS, GCP)
-- 🌟 Distributed mode (1000+ VM)
+- 🌟 Distributed mode (1000+ VMs)
 
-**[Полный Roadmap](rust/IMPROVEMENTS_ROADMAP.md)**
+**[Full Roadmap](rust/IMPROVEMENTS_ROADMAP.md)**
 
 ---
 
-## 📚 Документация
+## 📚 Documentation
 
-### Основы
-- **[Быстрый старт](docs/getting-started/quickstart.md)**
-- **[Установка](docs/installation.md)**
-- **[Аутентификация](docs/AUTH_IMPLEMENTATION_GUIDE.md)**
-- **[Конфигурация](docs/reference/config-default-behaviors.md)**
+### Basics
+- **[Quick Start](docs/getting-started/quickstart.md)**
+- **[Installation](docs/installation.md)**
+- **[Authentication](docs/AUTH_IMPLEMENTATION_GUIDE.md)**
+- **[Configuration](docs/reference/config-default-behaviors.md)**
 
-### Фичи
+### Features
 - **[Auto-Sync SSH Keys](docs/features/auto-sync-keys.md)**
 - **[Auto-Detect Resource Group](docs/features/auto-detect-rg.md)**
 - **[Azure Bastion](docs/features/bastion.md)**
@@ -457,15 +457,15 @@ if state.is_in_progress() {
 - **[Cost Optimization](docs/how-to/cost-optimization.md)**
 
 ### Reference
-- **[Command Reference](#-основные-команды)**
+- **[Command Reference](#-core-commands)**
 - **[Config Options](docs/reference/config.md)**
 - **[Environment Variables](docs/reference/env-vars.md)**
 
 ---
 
-## 🔧 Требования
+## 🔧 Requirements
 
-### Клиентские утилиты
+### Client Utilities
 - `az` (Azure CLI)
 - `gh` (GitHub CLI)
 - `git`
@@ -474,7 +474,7 @@ if state.is_in_progress() {
 - `uv`
 - `python`
 
-### Установка зависимостей
+### Install Dependencies
 
 **macOS:**
 ```bash
@@ -494,53 +494,53 @@ sudo dnf install azure-cli gh git tmux python3
 
 ---
 
-## 💡 Советы и лучшие практики
+## 💡 Tips and Best Practices
 
-### Экономия затрат
+### Cost Savings
 
 ```bash
-# Останавливать VM когда не используются
+# Stop VMs when not in use
 azlin stop my-vm  # Deallocate, billing stops
 
-# Использовать spot VMs для не критичных workload
+# Use spot VMs for non-critical workloads
 azlin new --name spot-worker --vm-size Standard_D2s_v3
 
-# Автоматическая очистка старых VM
+# Automatic cleanup of old VMs
 azlin prune --age-days 7 --idle-days 3
 ```
 
-### Производительность
+### Performance
 
 ```bash
-# Параллельное создание VM
+# Parallel VM creation
 azlin new --pool 5
 
-# Кэширование resource group
-# (включено по умолчанию, TTL 15 минут)
+# Resource group caching
+# (enabled by default, TTL 15 minutes)
 
-# Быстрое подключение через сессии
+# Fast connection via sessions
 azlin session my-vm myproject
 azlin connect myproject
 ```
 
-### Безопасность
+### Security
 
 ```bash
-# Использовать Bastion для продакшена
+# Use Bastion for production
 azlin new --name prod-vm --no-bastion  # false by default
 
-# Ротация SSH ключей
+# SSH key rotation
 azlin keys rotate my-vm
 
-# Ограничить доступ через tags
+# Restrict access via tags
 azlin new --name dev-vm --tag env=dev --tag team=backend
 ```
 
 ---
 
-## 🤝 Вклад в проект
+## 🤝 Contributing
 
-### Разработка
+### Development
 
 ```bash
 git clone https://github.com/rysweet/azlin
@@ -549,11 +549,11 @@ cargo build
 cargo test
 ```
 
-### Структура проекта
+### Project Structure
 
 ```
 azlin/
-├── rust/                    # Rust код
+├── rust/                    # Rust code
 │   ├── crates/
 │   │   ├── azlin/          # Main binary
 │   │   ├── azlin-core/     # Core types & config
@@ -563,39 +563,39 @@ azlin/
 │   │   └── azlin-ai/       # AI/NLP features
 │   └── tests/
 ├── src/                     # Python bridge (legacy)
-├── docs/                    # Документация
-├── examples/                # Примеры использования
-└── scripts/                 # Утилиты
+├── docs/                    # Documentation
+├── examples/                # Usage examples
+└── scripts/                 # Utilities
 ```
 
-### Тестирование
+### Testing
 
 ```bash
-# Запустить все тесты
+# Run all tests
 cargo test
 
-# Тесты конкретного crate
+# Test a specific crate
 cargo test -p azlin-core
 
-# Бенчмарки
+# Run benchmarks
 cargo bench
 ```
 
 ---
 
-## 📄 Лицензия
+## 📄 License
 
-MIT License — см. [LICENSE](LICENSE) файл.
+MIT License — see [LICENSE](LICENSE) file.
 
 ---
 
-## 🙏 Благодарности
+## 🙏 Acknowledgments
 
 - **Azure SDK for Rust** — Azure integration
 
 ---
 
-## 📞 Контакты
+## 📞 Contact
 
 - **GitHub**: [rysweet/azlin](https://github.com/rysweet/azlin)
 - **GitHub**: [TBoSy-bt/azlin-ref](https://github.com/TBoSy-bt/azlin-ref)
@@ -604,11 +604,11 @@ MIT License — см. [LICENSE](LICENSE) файл.
 
 <div align="center">
 
-**Сделано с ❤️ на Rust**
+**Made with ❤️ in Rust**
 
 [![Rust](https://img.shields.io/badge/rust-1.85+-orange.svg)](https://www.rust-lang.org)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-⭐ **Звезда на GitHub помогает проекту расти!** ⭐
+⭐ **Star on GitHub helps the project grow!** ⭐
 
 </div>
