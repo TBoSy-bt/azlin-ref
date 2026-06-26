@@ -1,39 +1,39 @@
-# 🚀 Roadmap улучшений azlin
+# 🚀 azlin Improvement Roadmap
 
-## ✅ Выполнено (Рефакторинг v1.0)
+## ✅ Completed (Refactoring v1.0)
 
-### Архитектура
-- [x] Выделение модуля `validation` для централизованной валидации
-- [x] Рефакторинг `models.rs` с улучшенной структурой
-- [x] Extension traits для domain моделей
-- [x] Builder pattern для `CreateVmParams`
-- [x] Оптимизация `config.rs` с match вместо if
+### Architecture
+- [x] Extracted `validation` module for centralized validation
+- [x] Refactored `models.rs` with improved structure
+- [x] Extension traits for domain models
+- [x] Builder pattern for `CreateVmParams`
+- [x] Optimized `config.rs` with match instead of if
 
-### Производительность
-- [x] Константные lookup таблицы для `VmImage`
-- [x] Уменьшение аллокаций в валидации
-- [x] Оптимизация `validate_field()` в конфиге
-- [x] Early exit паттерны в валидации
+### Performance
+- [x] Constant lookup tables for `VmImage`
+- [x] Reduced allocations in validation
+- [x] Optimized `validate_field()` in config
+- [x] Early exit patterns in validation
 
-### Качество кода
-- [x] Улучшенная документация (doc comments)
-- [x] Примеры использования (doctests)
-- [x] Расширенное тестирование
-- [x] Обратная совместимость API
+### Code Quality
+- [x] Improved documentation (doc comments)
+- [x] Usage examples (doctests)
+- [x] Expanded test coverage
+- [x] Backward compatible API
 
-### Безопасность
-- [x] Централизованная валидация ввода
-- [x] Защита от injection атак
-- [x] Санитизация чувствительных данных
-- [x] Валидация путей и имен
+### Security
+- [x] Centralized input validation
+- [x] Injection attack protection
+- [x] Sensitive data sanitization
+- [x] Path and name validation
 
 ---
 
-## 🎯 Краткосрочные улучшения (v1.1)
+## 🎯 Short-term Improvements (v1.1)
 
-### 1. Кэширование
+### 1. Caching
 
-#### Кэш регионов Azure
+#### Azure Regions Cache
 ```rust
 use std::sync::LazyLock;
 use moka::future::Cache;
@@ -47,9 +47,9 @@ static REGION_CACHE: LazyLock<Cache<String, RegionInfo>> =
     });
 ```
 
-**Эффект**: Уменьшение API calls к Azure на 90%
+**Impact**: 90% reduction in Azure API calls
 
-#### Кэш конфигурации
+#### Configuration Cache
 ```rust
 #[derive(Clone)]
 struct CachedConfig {
@@ -64,11 +64,11 @@ impl AzlinConfig {
 }
 ```
 
-**Эффект**: Ускорение запуска CLI на 40%
+**Impact**: 40% faster CLI startup
 
-### 2. Параллелизм
+### 2. Parallelism
 
-#### Параллельная валидация VM
+#### Parallel VM Validation
 ```rust
 use rayon::prelude::*;
 
@@ -77,9 +77,9 @@ vms.par_iter()
     .collect::<Result<Vec<_>>>()
 ```
 
-**Эффект**: Ускорение валидации fleet из 100 VM в 8 раз
+**Impact**: 8x faster validation for 100 VMs
 
-#### Async SSH connections
+#### Async SSH Connections
 ```rust
 use futures::future::join_all;
 
@@ -91,11 +91,11 @@ let futures: Vec<_> = targets
 let results = join_all(futures).await;
 ```
 
-**Эффект**: Параллельное выполнение на всех VM
+**Impact**: Parallel execution across all VMs
 
-### 3. Улучшение ошибок
+### 3. Error Improvements
 
-#### Контекстные ошибки
+#### Contextual Errors
 ```rust
 use thiserror::Error;
 
@@ -113,9 +113,9 @@ pub enum VmError {
 }
 ```
 
-**Эффект**: Лучшие сообщения об ошибках
+**Impact**: Better error messages
 
-#### Error reporting
+#### Error Reporting
 ```rust
 use color_eyre::eyre::Report;
 
@@ -124,9 +124,9 @@ async fn run() -> Result<(), Report> {
 }
 ```
 
-### 4. Логирование
+### 4. Logging
 
-#### Структурированное логирование
+#### Structured Logging
 ```rust
 use tracing::{info, warn, error, instrument};
 
@@ -137,15 +137,15 @@ async fn start_vm(vm: &VmInfo) -> Result<()> {
 }
 ```
 
-**Эффект**: Лучшая наблюдаемость
+**Impact**: Better observability
 
 ---
 
-## 🔥 Среднесрочные улучшения (v2.0)
+## 🔥 Mid-term Improvements (v2.0)
 
 ### 1. Connection Pooling
 
-#### SSH connection pool
+#### SSH Connection Pool
 ```rust
 use bb8::Pool;
 use ssh2::Session;
@@ -163,9 +163,9 @@ impl ManageConnection for SshConnectionManager {
 }
 ```
 
-**Эффект**: Ускорение SSH операций на 60%
+**Impact**: 60% faster SSH operations
 
-#### Bastion tunnel pool
+#### Bastion Tunnel Pool
 ```rust
 struct BastionPool {
     tunnels: DashMap<String, BastionTunnel>,
@@ -180,7 +180,7 @@ impl BastionPool {
 
 ### 2. Streaming Operations
 
-#### Streaming для больших операций
+#### Streaming for Large Operations
 ```rust
 use futures::stream::Stream;
 
@@ -191,9 +191,9 @@ fn sync_files(src: &Path, dst: &Path)
 }
 ```
 
-**Эффект**: Real-time прогресс для долгих операций
+**Impact**: Real-time progress for long operations
 
-#### Live tail логов
+#### Live Log Tailing
 ```rust
 async fn tail_logs(vm: &VmInfo) -> Result<impl Stream<Item = LogLine>> {
     // SSH with streaming stdout
@@ -202,7 +202,7 @@ async fn tail_logs(vm: &VmInfo) -> Result<impl Stream<Item = LogLine>> {
 
 ### 3. Plugin System
 
-#### External commands
+#### External Commands
 ```toml
 # ~/.azlin/config.toml
 [plugins]
@@ -215,11 +215,11 @@ custom_commands = "~/.azlin/plugins/"
 # Custom azlin extension
 ```
 
-**Эффект**: Расширяемость без изменения ядра
+**Impact**: Extensibility without core changes
 
 ### 4. TUI Improvements
 
-#### Interactive dashboard
+#### Interactive Dashboard
 ```rust
 use ratatui::Terminal;
 use tui_input::Input;
@@ -234,11 +234,11 @@ fn run_dashboard() -> Result<()> {
 
 ---
 
-## 🌟 Долгосрочные улучшения (v3.0)
+## 🌟 Long-term Improvements (v3.0)
 
 ### 1. AI Integration
 
-#### Natural language queries
+#### Natural Language Queries
 ```rust
 async fn ask_nlp(query: &str) -> Result<Vec<VmInfo>> {
     // "Show me all running VMs in eastus"
@@ -246,7 +246,7 @@ async fn ask_nlp(query: &str) -> Result<Vec<VmInfo>> {
 }
 ```
 
-#### Intelligent recommendations
+#### Intelligent Recommendations
 ```rust
 struct CostRecommendation {
     vm_name: String,
@@ -262,7 +262,7 @@ async fn get_recommendations() -> Vec<CostRecommendation> {
 
 ### 2. Multi-Cloud Support
 
-#### Abstract provider interface
+#### Abstract Provider Interface
 ```rust
 #[async_trait]
 trait CloudProvider: Send + Sync {
@@ -276,11 +276,11 @@ struct AwsProvider { /* ... */ }
 struct GcpProvider { /* ... */ }
 ```
 
-**Эффект**: Поддержка AWS, GCP, Oracle
+**Impact**: Support for AWS, GCP, Oracle
 
 ### 3. Distributed Mode
 
-#### Agent-based architecture
+#### Agent-Based Architecture
 ```rust
 // azlin-agent runs on each VM
 struct Agent {
@@ -295,11 +295,11 @@ struct Coordinator {
 }
 ```
 
-**Эффект**: Масштабирование на 1000+ VM
+**Impact**: Scaling to 1000+ VMs
 
 ### 4. Database Backend
 
-#### Persistent state
+#### Persistent State
 ```rust
 use sqlx::SqlitePool;
 
@@ -323,59 +323,59 @@ async fn get_cost_trend(vm_name: &str, days: u32) -> Result<Vec<CostPoint>> {
 
 ---
 
-## 📊 Метрики успеха
+## 📊 Success Metrics
 
-### Производительность
-- [ ] Время запуска CLI < 10ms (сейчас ~15ms)
-- [ ] Рендеринг 100 VM < 20ms (сейчас ~25ms)
-- [ ] SSH подключение < 100ms (сейчас ~200ms)
-- [ ] Параллельная валидация 100 VM < 2s (сейчас ~10s)
+### Performance
+- [ ] CLI startup time < 10ms (currently ~15ms)
+- [ ] 100 VM rendering < 20ms (currently ~25ms)
+- [ ] SSH connection < 100ms (currently ~200ms)
+- [ ] Parallel validation of 100 VMs < 2s (currently ~10s)
 
-### Качество кода
-- [ ] Test coverage > 80% (сейчас ~60%)
-- [ ] Doc coverage > 90% (сейчас ~70%)
+### Code Quality
+- [ ] Test coverage > 80% (currently ~60%)
+- [ ] Doc coverage > 90% (currently ~70%)
 - [ ] Clippy warnings = 0
-- [ ] Размер бинарника < 10MB (сейчас ~15MB)
+- [ ] Binary size < 10MB (currently ~15MB)
 
-### Надежность
-- [ ] MTBF > 1000 часов
+### Reliability
+- [ ] MTBF > 1000 hours
 - [ ] Error recovery rate > 95%
-- [ ] Graceful degradation при ошибках API
+- [ ] Graceful degradation on API errors
 
 ---
 
-## 🛠 Инструменты и технологии
+## 🛠 Tools and Technologies
 
-### Для внедрения
-- **Кэширование**: `moka`, `redis`
-- **Параллелизм**: `tokio`, `rayon`, `async-std`
-- **Логирование**: `tracing`, `tracing-subscriber`
-- **БД**: `sqlx`, `sqlite`, `postgres`
+### To Implement
+- **Caching**: `moka`, `redis`
+- **Parallelism**: `tokio`, `rayon`, `async-std`
+- **Logging**: `tracing`, `tracing-subscriber`
+- **Database**: `sqlx`, `sqlite`, `postgres`
 - **TUI**: `ratatui`, `crossterm`
 - **CLI**: `clap`, `dialoguer`
-- **Сериализация**: `serde`, `serde_json`, `toml`
+- **Serialization**: `serde`, `serde_json`, `toml`
 
-### Для разработки
-- **Тестирование**: `cargo-test`, `mockall`, `proptest`
-- **Бенчмарки**: `criterion`, `iai`
-- **Линтинг**: `clippy`, `rustfmt`
+### For Development
+- **Testing**: `cargo-test`, `mockall`, `proptest`
+- **Benchmarks**: `criterion`, `iai`
+- **Linting**: `clippy`, `rustfmt`
 - **CI/CD**: GitHub Actions, `taplo` (TOML lint)
 
 ---
 
-## 📝 Приоритеты
+## 📝 Priorities
 
-### P0 (Критично)
-1. Кэширование Azure API calls
+### P0 (Critical)
+1. Azure API call caching
 2. Error handling improvements
-3. Performance optimization для fleet операций
+3. Performance optimization for fleet operations
 
-### P1 (Важно)
-1. Connection pooling для SSH
-2. Streaming для долгих операций
-3. Улучшенное логирование
+### P1 (Important)
+1. Connection pooling for SSH
+2. Streaming for long operations
+3. Enhanced logging
 
-### P2 (Желательно)
+### P2 (Desirable)
 1. TUI dashboard
 2. Plugin system
 3. Advanced analytics
@@ -389,7 +389,7 @@ async fn get_cost_trend(vm_name: &str, days: u32) -> Result<Vec<CostPoint>> {
 
 ## 🎓 Learning Resources
 
-### Rust patterns
+### Rust Patterns
 - [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
 - [Async Book](https://rust-lang.github.io/async-book/)
 
@@ -403,6 +403,6 @@ async fn get_cost_trend(vm_name: &str, days: u32) -> Result<Vec<CostPoint>> {
 
 ---
 
-**Статус**: Рефакторинг v1.0 завершен ✅  
-**Следующий релиз**: v1.1 с кэшированием и параллелизмом  
-**Цель**: Ускорение на 50%, улучшение UX на 40%
+**Status**: Refactoring v1.0 complete ✅  
+**Next Release**: v1.1 with caching and parallelism  
+**Goal**: 50% speed improvement, 40% UX improvement
