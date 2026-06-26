@@ -1,4 +1,4 @@
-# 🚀 azlin — Управление Azure VM через CLI
+# 🚀 azlin — Управление Azure VM через CLI | Рефакторинг
 
 [![Latest Release](https://img.shields.io/github/v/release/rysweet/azlin?label=latest&sort=semver)](https://github.com/rysweet/azlin/releases/latest)
 [![Rust](https://img.shields.io/badge/rust-1.85+-orange.svg)](https://www.rust-lang.org)
