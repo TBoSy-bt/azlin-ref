@@ -592,18 +592,13 @@ MIT License — см. [LICENSE](LICENSE) файл.
 ## 🙏 Благодарности
 
 - **Azure SDK for Rust** — Azure integration
-- **Clap** — CLI framework
-- **Tokio** — Async runtime
-- **Ratatui** — TUI dashboard
-- **Indicatif** — Progress bars
 
 ---
 
 ## 📞 Контакты
 
 - **GitHub**: [rysweet/azlin](https://github.com/rysweet/azlin)
-- **Discussions**: [GitHub Discussions](https://github.com/rysweet/azlin/discussions)
-- **Issues**: [GitHub Issues](https://github.com/rysweet/azlin/issues)
+- **GitHub**: [TBoSy-bt/azlin-ref](https://github.com/TBoSy-bt/azlin-ref)
 
 ---
 
